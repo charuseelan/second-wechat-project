@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
+<style>
+body
+{
+ background-image: url("images/bac2.jpeg");
+  background-size:cover; 
+ background-repeat: no-repeat;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #0D0D0D;
+   color: white;
+   text-align: center;
+}
+.nav navbar-nav 
+{
+
+}
+
+</style>
+</head>
+<body ng-app="app">
+<div class="navbar-wrapper">
+<div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top w3-animate-opacity">
+		<div class="container">
+			<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<div id="navbar-collapse" class="collapse navbar-collapse">  
+			<a class="navbar-brand" href="#/home" ng-hide="currentUser.username"><font face="Times New Roman" size="5" color="white">Wechat</u></font></a>
+		<a class="navbar-brand"><font face="Times New Roman" size="4" color="white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transforming SOCIETY and SHAPING the FUTURE through CHAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></font></a>
+						
+				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav ">
+		<a class="navbar-brand" href="#/register" ng-hide="currentUser.username"><span class="glyphicon glyphicon-user"></span><b><font face="Times New Roman" size="4" color="white">&nbsp;Sign Up</font></b></a>
+		 <a class="navbar-brand" href="#/login" ng-hide="currentUser.username"><span class="glyphicon glyphicon-log-in"></span><b><font face="Times New Roman" size="4" color="white">&nbsp;Sign In</font></b></a>
+                </ul>
+            
+                <a class="navbar-brand" href="#/savejob" id="ntext" ng-show="currentUser.role=='admin'"><b>Post a Job</b></a>
+                <a class="navbar-brand" href="#/getalljobs" id="ntext" ng-show="currentUser.username"><b>All Jobs</b></a>
+                
+                <li class="dropdown" ng-show="currentUser.username">
+						<a href="" id="ntext" class="dropdown-toggle" data-toggle="dropdown"><b>Blogs</b><b class="caret"></b></a>
+						<ul class="dropdown-menu">
+                <li><a href="#/getallblogs" id="ntext" ng-show="currentUser.username"><b>All Blogs</b></a></li>
+				<li><a href="#/saveblogpost" id="ntext" ng-show="currentUser.username"><b>Add a new Blog</b></a></li></ul>
+					</li>
+		
+				<!--  <li><a href="#/updateuser" ng-show="currentUser.username"><b>updateuser</b></a></li>-->
+				<!--  <li><a href="#/getAllUsers" ng-hide="currentUser.firstname"><u>displayuserdata</u></font></a>-->
+				<li class="dropdown" ng-show="currentUser.username">
+						<a href="" id="ntext" class="dropdown-toggle" data-toggle="dropdown" ><b>Friends</b><b class="caret"></b></a>
+						<ul class="dropdown-menu">
+				<li><a href="#/suggesteduserslist" id="ntext" ng-show="currentUser.username"><b>People you may know</b></a></li>
+				<li><a href="#/pendingfriendrequests" id="ntext" ng-show="currentUser.username"><b>Pending Friend requests</b></a></li>
+				<li><a href="#/friendsList" id="ntext" ng-show="currentUser.username"><b>Your Friends</b></a></li>
+				
+					</li></ul>
+      <!--   <li><a href="#/viewprofile" id="ntext" ng-show="currentUser.username"><b>View My Profile</b></a></li> -->
+   		
+   		<li><a href="#/chat" id="ntext" ng-show="currentUser.username"><b>Chat</b></a></li>
+							
+				<li class="dropdown">
+						<a href="" id="ntext" class="dropdown-toggle" data-toggle="dropdown" ng-show="currentUser.username">Welcome, {{currentUser.firstname}}<span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>			
+       			
+		<li><a href="" id="ntext" ng-click="logout()" ng-show="currentUser.username"><b>Logout</b></a></li>							
+							 					
+					<li ng-show="currentUser.username"><a href="#/profilepic" id="ntext"><span
+							class="profile-img"> <img
+								src="http://localhost:8098/chatapprest/getimage/{{currentUser.username}}"
+								width="30px" height="30px" class="img-rounded"></span></a></li>
+								</ul></div></ul>
+								
+				
+				
+			</div>
+			</div>
+			</nav>
+			</div>
+			</div><br><br><br><br>
+		<center>	<h4>The social media, today, has become one of the most effective ways to communicate.</h4><br> Emails and telephones are no longer the primary way of electronic communication.</h4><br><br></center>
+		<center><h4> WeChat is a mobile text and voice messaging service that was developed by me</h4></center> 
+		<center><h4> Users can find their friends by their WeChat Ids or directly by their phone numbers. </h4></center>
+			</h4>
+				<div class="container">
+
+<div ng-view=""></div>
+
+</div>
+	<br><br>	
+
+<div class="footer" >
+<font face="Times New Roman" size="5" color="white"> 
+  <p>Wechat</p>
+  </font>
+</div>
+</body>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="controller/usercontrol.js"></script>
+<script type="text/javascript" src="controller/profilepicturecontroller.js"></script>
+<script type="text/javascript" src="service/userservice.js"></script>
+<script type="text/javascript" src="controller/blogcontroller.js"></script>
+<script type="text/javascript" src="controller/blogdetailscontrol.js"></script>
+<script type="text/javascript" src="controller/friendcontrol.js"></script>
+<script type="text/javascript" src="controller/friendddetaialcontrol.js"></script>
+<script type="text/javascript" src="service/blogservice.js"></script>
+<script type="text/javascript" src="service/friendservice.js"></script>
+<script type="text/javascript" src="controller/jobcontrol.js"></script>
+<script type="text/javascript" src="service/jobservice.js"></script>
+<script type="text/javascript" src="service/mydetailsservice.js"></script>
+<script type="text/javascript" src="controller/mydetailscontroller.js"></script>
+<script type="text/javascript" src="controller/chatcontroller.js"></script>
+<script type="text/javascript" src="service/chatservice.js"></script>
+
+</html>

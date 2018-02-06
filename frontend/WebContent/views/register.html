@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<br>
+
+
+<h2><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register Here</strong></h2><br><br>
+<center>
+
+<form class="form-horizontal">
+
+<div class="form-group">
+  <label class="col-md-2 control-label" >FirstName: </label>  
+  <div class="col-md-3">
+  <input placeholder="Enter firstname" class="form-control input-md" ng-model="user.firstname" type="text" required>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-2 control-label" >LastName: </label>  
+  <div class="col-md-3">
+  <input placeholder="Enter lastname" class="form-control input-md" ng-model="user.lastname" type="text" required>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-2 control-label" >E-Mail Address: </label>  
+  <div class="col-md-3">
+  <input placeholder="Enter E-Mail Address" class="form-control input-md" ng-model="user.emailId" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Eg:safna@xxx.yyy>"required>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-2 control-label" >Phone: </label>  
+  <div class="col-md-3">
+  <input placeholder="Enter phonenumber" class="form-control input-md" pattern="[789][0-9]{9}" title="Should be 10 digits starting from 7,8 or 9" ng-model="user.phonenumber" type="text" required>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-2 control-label" >Username: </label>  
+  <div class="col-md-3">
+  <input placeholder="Enter Username" class="form-control input-md" pattern="[a-z0-9]{5,30}" minlength="5" maxlength="30"
+        title="it should be of min 5 char, start with small letter & no space." ng-model="user.username" type="text" required>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label" >Password: </label>  
+  <div class="col-md-3">
+  <input placeholder="Enter Password" class="form-control input-md" minlength="6" maxlength="16"  title="Six or more characters" ng-model="user.password" type="password" required>
+  </div>
+</div>
+<div class="radio col-md-2">
+      <label class="radio col-md-2"><input type="radio" ng-model="user.role" value="STUDENT">Student</label>
+    </div>
+    
+    <div class="radio col-md-2">
+      <label class="radio col-md-2"><input type="radio" ng-model="user.role" value="admin">Admin</label>
+    </div>
+       
+    
+    <div class="radio col-md-2">
+      <label class="radio col-md-2"><input type="radio" ng-model="user.role" value="EMPLOYEE">Employee</label>
+    </div>
+    <br>
+       <br> <br>
+    
+<center><div class="col-md-3">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary btn-block" ng-click="registerUser()">Register</button>
+
+</div>
+</center>
+</form>
+
+</body>
+</center>
+</html>
